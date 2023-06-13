@@ -17,8 +17,8 @@ connection.connect((err) => {
 })
 
 connection.end((err) => {
-    if (erro){
-        console.log('Erro ao encerrar a conexão: ', erro)
+    if (err){
+        console.log('Erro ao encerrar a conexão: ', err)
         return
     }
     console.log('Conexão encerrada')
