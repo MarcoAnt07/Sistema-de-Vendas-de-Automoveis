@@ -1,0 +1,30 @@
+body{
+    background-color: azure;
+    font-family: 'Segoe UI';
+}
+
+h1{
+    margin-left: 25px;
+    color: #7814FF;
+}
+
+#autos-caixa{
+    border: 1px solid black;
+    width: 500px;
+    height: auto;
+
+    margin: auto;
+}
+
+.autos-modelo{
+    margin-left: 25px;
+    color: #7814FF;
+}
+
+.autos-btn{
+    background-color: #7814FF;
+    color: #FFFFFF;
+    border-radius: 8px;
+    padding-inline: 20px;
+    margin-left: 100px;
+}

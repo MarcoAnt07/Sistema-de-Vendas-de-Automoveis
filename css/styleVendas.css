@@ -1,0 +1,47 @@
+body{
+    background-color: azure;
+    font-family: 'Segoe UI';
+}
+
+.principal{
+    border: 1px solid black;
+    width: 500px;
+    height: auto;
+
+    margin: auto;
+
+    margin-top: 15%;
+
+    color: #7814FF;
+}
+
+h1{
+    margin-left: 20px;
+}
+
+#selectClientes{
+    width: 290px;
+    margin-left: 100px;
+}
+
+#selectConcessionaria{
+    width: 290px;
+    margin-left: 44px;
+}
+
+.vendasClientes{
+    margin-left: 20px;
+    color: #7814FF;
+}
+
+.btnConfirmar{
+    margin-left: 190px;
+
+    background-color: #7814FF;
+    color: white;
+
+    border-radius: 8px;
+    padding-inline: 30px;
+    padding-block: 5px;
+    
+}
