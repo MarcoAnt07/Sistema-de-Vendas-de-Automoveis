@@ -1,42 +1,52 @@
 let titulo = localStorage.getItem('modelo')
-
-let modelo = localStorage.getItem('modelo')
-
+let id = localStorage.getItem('id')
 document.getElementById('modelo').innerHTML = titulo
+let concessionariaId = ''
 
 fetch('php/Clientes.php')
 .then((res) => {
     return res.json()
 })
 .then((dados) => {
-    let clientes = ''
+    let clientes = '<option disable selected></option>'
 
     for(let i = 0; i < dados.length; i++){
         clientes += `<option value="${dados[i].Nome}">${dados[i].Nome}</option>`
     }
     document.getElementById('selectClientes').innerHTML = clientes
 })
-.catch((err) => {
-    console.log(err)
+
+fetch('php/Alocacao.php')
+.then((res) => {
+    return res.json()
+})
+.then((data) => {
+    console.log(data)
+    console.log(id)
+
+    for(let i = 0; i < data.length; i++){
+        if(data[i].Automovel == id){
+            concessionariaId = data[i].Concessionaria
+        }
+    }
+    console.log(concessionariaId)
 })
 
 fetch('php/Concessionaria.php')
 .then((res) => {
     return res.json()
 })
-.then((dados) => {
-    let concessionaria = ''
+.then((data) => {
+    console.log(data)
 
-    for(let i = 0; i < dados.length; i++){
-        concessionaria += `<option value="${dados[i].Nome}">${dados[i].Nome}</option>`
+    let concessionaria = '<option disable selected></option>'
+
+    for(let  i = 0; i < data.length; i++){
+        if(data[i].ID == concessionariaId){
+            concessionaria += `<option value="${id}">${data[i].Nome}</option>`
+        }
     }
-    document.getElementById('selectConcessionaria').innerHTML = concessionaria
-})
-.catch((err) => {
-    console.log(err)
-})
 
-function vendaRealizada(){
-    alert('Venda Confirmada')
-    window.location.href = 'http://localhost/Projeto%20SAEP/'
-}
+    document.getElementById('selectConcessionaria').innerHTML = concessionaria
+
+})
