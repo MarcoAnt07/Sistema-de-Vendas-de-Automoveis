@@ -1,3 +1,5 @@
+<! php include "php/automoveis.php"
+<! php include "php/alocacao.php"
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,29 +13,61 @@
         <h1 id="titulo"></h1>
 
         <div id="autos-label">
-            <label class="autos-modelo">Fiat Argo | R$ 61.000,00</label>   
-
-            <button class="autos-btn" onclick="vendas1()"> Vender </button>
-
-            <p>
-
-            <label class="autos-modelo">
-                Renault Kwid | R$ 45.000,00 
-            </label>
-
-            <button class="autos-btn" onclick="vendas()"> Vender </button>
             
-            <p>
-
-            <label class="autos-modelo">
-                Fiat Mobi | R$ 55.000,00 
-            </label>
-
-            <button class="autos-btn" onclick="vendas()"> Vender </button>
             
         </div>
     </div>
 
-    <script src="js/autos.js"></script>
+    <script>
+        let titulo = localStorage.getItem('titulo')
+        document.getElementById('titulo').innerHTML = titulo
+
+        let numAutos = []
+        let nomesAutos = []
+        let veiculos = []
+
+        fetch('php/alocacao.php')
+        .then((res) => {
+            return res.json()
+        })
+        .then((data) => {
+            let area = localStorage.getItem('area')
+
+            for(let i = 0; i < data.length; i++){
+                if(data[i].Area == area){
+                    numAutos.push(parseInt(data[i].Automovel))
+                }
+            }
+            console.log(numAutos)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+
+        fetch("php/automoveis.php")
+        .then((res) => {
+            return res.json()
+        })
+        .then((data) => {
+            for(let i = 0; i < data.length; i++){
+                for(let j = 0; j < numAutos.length; j++){
+                    if(numAutos[j] == data[i].ID){
+                        console.log(`${numAutos[j]} | ${data[i].ID}`)
+
+                        nomesAutos.push(data[i].Modelo)
+
+                        veiculos.push(`${data[i].Modelo} | R$ ${data[i].Preco}`)
+                    }
+                }
+            }
+            console.log(nomesAutos)
+            console.log(veiculos)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+
+
+    </script>
 </body>
 </html>

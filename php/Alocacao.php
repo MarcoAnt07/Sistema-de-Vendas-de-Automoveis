@@ -1,8 +1,8 @@
 <?php
     require_once("Conexao.php");
 
-    $sql = "select * from clientes";
-    $result = $conn -> query($sql);
+    $sql = "select * from alocacao";
+    $result = $conexao -> query($sql);
 
     if($result -> num_rows > 0){
         $data = array();
@@ -11,6 +11,4 @@
         }
         echo json_encode($data);
     }
-
-    $conn -> close();
 ?>

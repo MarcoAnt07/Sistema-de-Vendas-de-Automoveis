@@ -1,19 +1,14 @@
 <?php
-    $conn = new mysqli("localhost", "root", "", "fabrica", "3307");
+    require_once("Conexao.php");
 
     $sql = "select * from Concessionaria";
-    $result = $conn -> query($sql);
-
-    if($result -> num_rows > 0){
-        $concessionaria = array();
-        while($row = $result -> fetch_assoc()){
-            $concessionaria[] = $row;
+    $resultado = $conexao -> query($sql);
+    
+    if($resultado -> num_rows > 0){
+        $data = array();
+        while($row = $resultado -> fetch_assoc()){
+            $data[] = $row;
         }
-
-        echo json_encode($concessionaria);
+        echo json_encode($data);
     }
-
-    $conn -> close();
-
-
 ?>

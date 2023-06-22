@@ -1,5 +1,7 @@
 let titulo = localStorage.getItem('modelo')
+
 let modelo = localStorage.getItem('modelo')
+
 document.getElementById('modelo').innerHTML = titulo
 
 fetch('php/Clientes.php')
@@ -33,3 +35,8 @@ fetch('php/Concessionaria.php')
 .catch((err) => {
     console.log(err)
 })
+
+function vendaRealizada(){
+    alert('Venda Confirmada')
+    window.location.href = 'http://localhost/Projeto%20SAEP/'
+}
